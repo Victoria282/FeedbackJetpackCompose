@@ -1,0 +1,274 @@
+apply from: "$rootProject.rootDir/versions.gradle"
+
+ext {
+    core = { Project project ->
+        project.dependencies {
+            coreLibraryDesugaring deps.core.core_library_desugaring
+            implementation deps.core.core_ktx
+            implementation deps.core.fragment
+            implementation deps.core.activity_ktx
+            implementation deps.core.appcompat
+            implementation deps.core.material
+            implementation deps.core.recyclerview
+            testImplementation deps.core.junit
+            androidTestImplementation deps.core.junit_ext
+            androidTestImplementation deps.core.espresso
+        }
+    }
+
+    coroutines = { Project project ->
+        project.dependencies {
+            implementation deps.coroutines.core
+            implementation deps.coroutines.android
+            testImplementation deps.coroutines.test
+            implementation deps.coroutines.viewmodel
+            implementation deps.coroutines.livedata
+            implementation deps.coroutines.runtime
+            implementation deps.coroutines.work_runtime
+            implementation deps.coroutines.work_runtime_ktx
+        }
+    }
+
+    compose = { Project project ->
+        project.dependencies {
+            implementation deps.compose.foundation
+            implementation deps.compose.runtime
+            implementation deps.compose.ui
+            implementation deps.compose.tooling
+            implementation deps.compose.material
+            implementation deps.compose.coil
+            implementation deps.compose.activity_compose
+            implementation deps.compose.viewmodel_compose
+            implementation deps.compose.livedata_compose
+        }
+    }
+
+    ktor = { Project project ->
+        project.dependencies {
+            implementation deps.ktor.core
+            implementation deps.ktor.logging
+            implementation deps.ktor.android
+            implementation deps.ktor.serializer
+            implementation deps.ktor.serializerJson
+            implementation deps.ktor.negotiation
+        }
+    }
+
+    retrofit = { Project project ->
+        project.dependencies {
+            implementation deps.retrofit.retrofit
+            implementation deps.retrofit.converter
+            implementation deps.retrofit.gson
+            implementation deps.retrofit.interceptor
+        }
+    }
+    dagger = { Project project ->
+        project.dependencies {
+            kaptAndroidTest deps.dagger.compiler
+            implementation deps.dagger.dagger
+            kapt deps.dagger.compiler_kapt
+            implementation deps.dagger.support
+            kapt deps.dagger.processor
+            kapt deps.dagger.kotlinx
+        }
+    }
+
+    // конфигурация создана специально только для CashdeskDevices,
+    // я так и не понял почему работает только с этой конфигурацией даггера,
+    // без подключения kapt
+    daggerImpl = { Project project ->
+        project.dependencies {
+            implementation deps.dagger.dagger
+            implementation deps.dagger.support
+            implementation deps.dagger.android
+        }
+    }
+
+    animations = { Project project ->
+        project.dependencies {
+            implementation deps.animations.lottie
+        }
+    }
+
+    time = { Project project ->
+        project.dependencies {
+            implementation deps.time.joda
+            implementation deps.time.kotlinx
+        }
+    }
+
+    room = { Project project ->
+        project.dependencies {
+            api deps.room.runtime
+            kapt deps.room.compiler
+            implementation deps.room.paging
+            implementation deps.room.ktx
+            implementation deps.room.sqlcipher
+        }
+    }
+
+    swiperefreshlayout = { Project project ->
+        project.dependencies {
+            implementation deps.swiperefreshlayout.swiperefreshlayout
+        }
+    }
+
+    flexboxlayoutmanager = { Project project ->
+        project.dependencies {
+            implementation deps.flexboxlayoutmanager.flexboxlayoutmanager
+        }
+    }
+
+    paging = { Project project ->
+        project.dependencies {
+            implementation deps.paging.runtime
+        }
+    }
+
+    datastore = { Project project ->
+        project.dependencies {
+            implementation deps.datastore.datastore
+        }
+    }
+
+    qrscanner_vetis = { Project project ->
+        project.dependencies {
+            implementation deps.qrscanner_vetis.qrscanner_vetis
+        }
+    }
+
+    informingsystem = { Project project ->
+        project.dependencies {
+            implementation deps.informingsystem.informingsystem
+        }
+    }
+
+    serialization = { Project project ->
+        project.dependencies {
+            implementation deps.serialization.json
+        }
+    }
+
+    glide = { Project project ->
+        project.dependencies {
+            implementation deps.glide.glide
+            kapt deps.glide.compiler
+        }
+    }
+
+    firebase = { Project project ->
+        project.dependencies {
+            implementation platform(deps.firebase.bom)
+            implementation deps.firebase.crashlytics
+            implementation deps.firebase.analytics
+            implementation deps.firebase.messaging
+        }
+    }
+
+    app_metrica = { Project project ->
+        project.dependencies {
+            implementation deps.app_metrica.yandex
+        }
+    }
+
+    test = { Project project ->
+        project.dependencies {
+            testImplementation deps.test.mock
+            testImplementation deps.test.mock_agent
+            testImplementation deps.test.arch
+        }
+    }
+
+    navigation = { Project project ->
+        project.dependencies {
+            implementation deps.navigation.fragment
+            implementation deps.navigation.ktx
+        }
+    }
+
+    spotlight = { Project project ->
+        project.dependencies {
+            implementation deps.spotlight.spotlight
+        }
+    }
+
+    biometric = { Project project ->
+        project.dependencies {
+            implementation deps.biometric.biometric
+        }
+    }
+
+    featuresettings = { Project project ->
+        project.dependencies {
+            implementation deps.featuresettings.featuresettings
+        }
+    }
+
+    gson = { Project project ->
+        project.dependencies {
+            implementation deps.retrofit.gson
+        }
+    }
+
+    splashscreen = { Project project ->
+        project.dependencies {
+            implementation deps.splashscreen.splashscreen
+        }
+    }
+
+    map_view = { Project project ->
+        project.dependencies {
+            implementation deps.map_view.map_view
+        }
+    }
+    nfc_support = { Project project ->
+        project.dependencies {
+            implementation deps.nfc_support.jna
+            implementation deps.nfc_support.nsk90
+            implementation deps.nfc_support.bouncycastle
+        }
+    }
+    calendar = { Project project ->
+        project.dependencies {
+            implementation deps.calendar.view
+        }
+    }
+    sdp = { Project project ->
+        project.dependencies {
+            implementation deps.sdp.sdp
+            implementation deps.sdp.ssp
+        }
+    }
+    test_impl = { Project project ->
+        project.dependencies {
+            implementation deps.test_impl.rules
+            implementation deps.test_impl.uiautomator
+            implementation deps.test_impl.ext
+//            implementation deps.test_impl.espresso
+            implementation deps.test_impl.kautomator
+            implementation deps.test_impl.adb_server_device
+            implementation deps.test_impl.adb_server_connection
+            implementation deps.test_impl.adb_server_command_types
+        }
+    }
+    test_utils = { Project project ->
+        project.dependencies {
+            androidTestUtil deps.test_utils.orchestrator
+        }
+    }
+    test_utils_impl = { Project project ->
+        project.dependencies {
+            androidTestImplementation deps.test_utils_impl.kaspresso_allure_support
+            androidTestImplementation deps.test_utils_impl.kaspresso_compose_support
+            androidTestImplementation deps.test_utils_impl.kaspresso
+            androidTestImplementation deps.test_utils_impl.kakao
+            androidTestImplementation deps.test_utils_impl.espresso_core
+            androidTestImplementation deps.test_utils_impl.kakaocup
+            androidTestImplementation deps.test_utils_impl.core
+            androidTestImplementation deps.test_utils_impl.adbserver_device
+            androidTestImplementation deps.test_utils_impl.core_ktx
+            androidTestImplementation deps.test_utils_impl.runner
+            androidTestImplementation deps.test_utils_impl.espresso_intents
+        }
+    }
+}
